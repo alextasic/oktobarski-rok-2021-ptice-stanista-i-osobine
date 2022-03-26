@@ -1,0 +1,92 @@
+
+.glavniDiv {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: rgb(166, 201, 201);
+    border:10px;
+    border-color: black;
+}
+
+.divZaUnos{
+    display:flex;
+    border:black;
+    border-width: 2px;
+    flex-direction: column;
+
+    background-color: aqua;
+    border:2px;
+    border:10px;
+    border-color: black;
+    width: 30%;
+    width: 300px;
+    
+}
+
+.divZaIzbor{
+    display:flex;
+    border-width: 2px;
+    color: rgb(0, 132, 255);
+    border-color: black;
+    max-width: 70%;
+}
+
+.divPrikaz{
+    flex-direction: row;
+    display:flex;
+    border-width: 2px;
+    background-color: rgb(36, 75, 106);
+    border-color: black;
+   
+    flex-wrap: wrap;
+}
+
+.divPrikaz1{
+    flex-direction: row;
+    display:flex;
+    border-width: 2px;
+    background-color: rgb(36, 75, 106);
+    border-color: black;
+    max-width: 70%;
+    min-width: 20%;
+    flex-wrap: wrap;/* sto se tice flexa, potrebno je da svi divovi redom imaju display flex,
+     da imaju flex direction i da imaju max width., kao i flex wrap. tako ce da ih sam rasporedi automatski,,ne  mora da se ima media*/
+}
+
+.divPrikaz3{
+    flex-direction: row;
+    display:flex;
+    border-width: 2px;
+    background-color: rgb(36, 75, 106);
+    border-color: black;
+    
+    flex-wrap: wrap;
+}
+
+.divPrikaz{
+    flex-direction: row;
+    display:flex;
+    border-width: 2px;
+    background-color: rgb(36, 75, 106);
+    border-color: black;
+   
+    flex-wrap: wrap;
+}
+
+
+
+.kontZaPtice{
+    display:flex;
+    max-width: 400px;
+    flex-wrap: wrap; 
+    max-width: 30%;
+    flex: 1 0 auto;
+}
+
+@media screen and (max-width:1200px){
+    .glavniDiv{/*menja raspored kad se suzi prikaz ispod 1200px*/
+        flex-direction:column;
+
+    }
+}
+   
