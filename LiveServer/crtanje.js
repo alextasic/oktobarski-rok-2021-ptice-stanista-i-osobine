@@ -151,7 +151,7 @@ crtajDeoZaUnos(hst){
         var izabranoPodrucje=this.kontejner.querySelector("select[name=selekt]").value;
  
         console.log(NizSelektovanih);
-
+///PROSLEDJIVANJE STRINGA SELEKTOVANIH OSOBINA
         fetch("https://localhost:5001/Ispit/TrazenjePtica/"+ NizSelektovanih + "/" + izabranoPodrucje , {
             method:"GET",
             ///ne sme get da ima body
