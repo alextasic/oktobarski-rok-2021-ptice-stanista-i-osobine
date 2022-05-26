@@ -36,8 +36,6 @@ crtajDeoZaUnos(hst){
    /* divZaPrikaz.innerHTML="Prikaz ptica";*/
     hst.appendChild(divZaPrikaz);
 
-   
-
     let selekt=document.createElement("select");
     selekt.name="selekt";
     divZaUnos.appendChild(selekt);
@@ -84,11 +82,15 @@ crtajDeoZaUnos(hst){
     {
         method:"GET",
     }).then(p=>p.json().then(data=>{
-        data.forEach(element => {
+        data.forEach(element => {/*[{"id":1,"naziv":"dlake","vrednost":"velike"},{"id":2,"naziv":"boja","vrednost":"braon"},{"id":3,"naziv":"velicina","vrednost":"velike"},
+        {"id":4,"naziv":"velicina","vrednost":"male"},{"id":5,"naziv":"boja perja","vrednost":"siva"},{"id":6,"naziv":"boja perja","vrednost":"bela"},{"id":7,"naziv":"boja",
+        "vrednost":"crvena"},{"id":8,"naziv":"boja kljuna","vrednost":"zuta"},{"id":9,"naziv":"boja repa","vrednost":"braon"},
+        {"id":10,"naziv":"boja","vrednost":"braon"},{"id":11,"naziv":"boja","vrednost":"braon"}]*/
 
-       if ((nizPojavaOsobina.find( o=> o==element.naziv))==undefined){///ako ga ne nadje
+       if ((nizPojavaOsobina.find( o=> o==element.naziv))==undefined){///ako ga ne nadje 
             nizPojavaOsobina.push(element.naziv);
-    
+
+            console.log(nizPojavaOsobina);
 
             var divZaIzborOsobinai=document.createElement("div");
             divZaIzborOsobinai.className=element.naziv;
@@ -105,19 +107,15 @@ crtajDeoZaUnos(hst){
                 divZaIzborOsobinai.appendChild(opcija);
 
                 var tekst=document.createElement("label");
-                tekst.innerHTML=element.vrednost1;
+                tekst.innerHTML=element.vrednost;
                 divZaIzborOsobinai.appendChild(tekst);
-
-        
 ////////////////////////////////////////////////////////generalno osobina ima naziv i vrednost, ako se vidi da dve osobine imaju isti naziv, onda
 ////////////////////////////////////////////////////////se dodaju istoj grupi osobina
         }
         else{
-
-        var nadjeniDiv= document.createElement("div");
+        var nadjeniDiv = document.createElement("div");
         nadjeniDiv = document.getElementsByClassName(element.naziv)[0]; //ako ga nadje treba samo da doda novi radio element 
-                                                                        //[0] sluzi da nadje 1 element
-
+                                                                        //[0] sluzi da nadje 1. element
                 var opcija=document.createElement("input");
                 opcija.type="radio";
                 opcija.name=element.naziv;
@@ -125,9 +123,8 @@ crtajDeoZaUnos(hst){
                 nadjeniDiv.appendChild(opcija);
 
                 var tekst=document.createElement("label");
-                tekst.innerHTML=element.vrednost1;
+                tekst.innerHTML=element.vrednost;
                 nadjeniDiv.appendChild(tekst);
-
         }
        }
     )}))
@@ -135,10 +132,8 @@ crtajDeoZaUnos(hst){
         dugme.innerHTML="Pronadji";
         divZaIzbor.appendChild(dugme);
 
-
     dugme.onclick=(ev)=>{/////PROSLEDJIVANJE SELEKTOVANIH OSOBINA I PODRUCJA
         
-
         let selektovani=this.kontejner.querySelectorAll('input[type="radio"]:checked');
 
         let NizSelektovanih="";
@@ -151,28 +146,41 @@ crtajDeoZaUnos(hst){
         var izabranoPodrucje=this.kontejner.querySelector("select[name=selekt]").value;
  
         console.log(NizSelektovanih);
-///PROSLEDJIVANJE STRINGA SELEKTOVANIH OSOBINA
+//PROSLEDJIVANJE STRINGA IZABRANIH OSOBINA
         fetch("https://localhost:5001/Ispit/TrazenjePtica/"+ NizSelektovanih + "/" + izabranoPodrucje , {
             method:"GET",
             ///ne sme get da ima body
 
         }).then(p=>p.json().then(data=>{
+            if (data.length!=0){
             data.forEach(element => {
                 
             var divZaPrikaz3=document.createElement("div");
             divZaPrikaz.className="divPrikaz3";
             divZaPrikaz.appendChild(divZaPrikaz3);
-            var pticaa=new Ptica(element.id,element.naziv,element.URLSlike);
+            var pticaa=new Ptica(element.id,element.naziv,element.urlSlike);        /////napravis objekt i pozoves za njega f-ju
             pticaa.crtajPticu(divZaPrikaz3,izabranoPodrucje);
             
             })
+            }else
+            {
+            fetch("https://localhost:5001/Ispit/DodajUSpecijalnuTabelu/"+ NizSelektovanih +"/"+ izabranoPodrucje,
+            {
+                 method:"POST",
+            }).then(p=>
+            {if(p.ok){
+                alert("Dodati podaci o nepoznatoj ptici");
+            }})
+            
+            }
         }))
     }
 }
-crtajDeoZaPrikaz(hst)
+
+/*crtajDeoZaPrikaz(hst)
 {
     var divZaPrikaz=document.createElement("div");
     divZaPrikaz.className="divPrikaz";
     hst.appendChild(divZaPrikaz);  
-}
+}*/
 }

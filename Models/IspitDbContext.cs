@@ -12,6 +12,8 @@ namespace Models
 
         public DbSet<PticaPodrucje> PticaPodrucje{get;set;}
 
+        public DbSet<SpecijalnaTabela> SpecijalnaTabela{get;set;}
+
         // DbSet...
 
         public IspitDbContext(DbContextOptions options) : base(options)

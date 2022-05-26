@@ -77,7 +77,9 @@
 
 .kontZaPtice{
     display:flex;
-    max-width: 400px;
+    background-color: bisque;
+    min-width: 200px;
+    min-height: 50px;
     flex-wrap: wrap; 
     max-width: 30%;
     flex: 1 0 auto;

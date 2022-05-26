@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Template.Migrations
 {
     [DbContext(typeof(IspitDbContext))]
-    partial class IspitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220524020404_v1")]
+    partial class v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,26 +104,6 @@ namespace Template.Migrations
                     b.ToTable("PticaPodrucje");
                 });
 
-            modelBuilder.Entity("Models.SpecijalnaTabela", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Osobine")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PodrucjeID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PodrucjeID");
-
-                    b.ToTable("SpecijalnaTabela");
-                });
-
             modelBuilder.Entity("OsobinaPtica", b =>
                 {
                     b.Property<int>("OsobineID")
@@ -150,15 +132,6 @@ namespace Template.Migrations
                     b.Navigation("Podrucje");
 
                     b.Navigation("Ptica");
-                });
-
-            modelBuilder.Entity("Models.SpecijalnaTabela", b =>
-                {
-                    b.HasOne("Models.Podrucje", "Podrucje")
-                        .WithMany()
-                        .HasForeignKey("PodrucjeID");
-
-                    b.Navigation("Podrucje");
                 });
 
             modelBuilder.Entity("OsobinaPtica", b =>

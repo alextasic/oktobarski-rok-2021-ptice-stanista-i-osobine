@@ -1,23 +1,28 @@
 export class Ptica
 {
-constructor(id,naziv,URLSlike)
+constructor(id,naziv,urlSlike)
 {
     this.id=id;
     this.naziv=naziv;
-    this.URLSlike=URLSlike;
+    this.urlSlike=urlSlike;
     this.kontejner=null;
 
 }
 
 crtajPticu(host,podrucje){
 
+    var nadjiDivKojiPratiPojave=document.getElementsByClassName('kontZaPtice'+this.id);//querySelector('div[className=".kontZaPtice"]');
+    console.log(nadjiDivKojiPratiPojave[0]);
+    if (nadjiDivKojiPratiPojave[0]!=null){
+    var nadjiDivKojiPratiPojaveParent=nadjiDivKojiPratiPojave[0].parentNode;
+    nadjiDivKojiPratiPojaveParent.removeChild(nadjiDivKojiPratiPojave[0]);
+    }
+
     var kontejnerZaPtice=document.createElement("div");
-    kontejnerZaPtice.className="kontZaPtice";
+    kontejnerZaPtice.className="kontZaPtice"+this.id;
     host.appendChild(kontejnerZaPtice);
 
-    kontejnerZaPtice.innerHTML=this.naziv+"  "+this.URLSlike;
-    
-
+    kontejnerZaPtice.innerHTML=this.naziv+"      "+this.urlSlike+" -  ";
 
     var dugme=document.createElement("button");
     kontejnerZaPtice.appendChild(dugme);
@@ -29,32 +34,17 @@ crtajPticu(host,podrucje){
             method:"PUT",
         }).then(p=>
             {if(p.ok){
-                
-                    
-
-                        alert("Broj pojava je uvecan");
-                       /* var nadjiDivKojiPratiPojave=this.kontejner.querySelector("div[className=kontZaPtice]");
-                        var nadjiDivKojiPratiPojaveParent=nadjiDivKojiPratiPojave.parentNode
-                        nadjiDivKojiPratiPojaveParent.removeChild(nadjiDivKojiPratiPojave);
-
-                        var kontejnerZaPtice=document.createElement("div");
+                        alert("Broj pojava je uvecan");//tu treba dodati da se vrati podatak o pojavama ptice
+                      
+                       /* var kontejnerZaPtice=document.createElement("div");
                         kontejnerZaPtice.className("kontZaPtice");
                         host.appendChild(kontejnerZaPtice);
                 
                         kontejnerZaPtice.innerHTML=this.naziv;
-                        kontejnerZaPtice.innerHTML=this.URLSlike;
-                */
-                        
-
-
-                    
+                        kontejnerZaPtice.innerHTML=this.urlSlike;*/
+                
                 }
-
             });
-            
-       
-
         }
-
     }
 }

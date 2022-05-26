@@ -14,11 +14,11 @@ namespace Models
         public string Naziv { get; set; }
 
         [MaxLength(100)]
-        public string Vrednost1 { get; set; }
+        public string Vrednost { get; set; }
 
-        public string Vrednost2 { get; set; }
+     /*   public string Vrednost2 { get; set; }
 
-        public string Vrednost3 { get; set; }
+        public string Vrednost3 { get; set; }*/
 
         [JsonIgnore]
         public List<Ptica> Ptice { get; set; }

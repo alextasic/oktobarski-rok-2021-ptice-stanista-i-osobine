@@ -17,7 +17,7 @@ namespace Models
         public string URLSlike { get; set; }
 
         [JsonIgnore]
-        public Osobina Osobine { get; set; }
+        public List<Osobina> Osobine { get; set; }//tu treba List<Osobina> Osobine 
 
         [JsonIgnore]
         public List<PticaPodrucje> PticaPodrucja { get; set; }
